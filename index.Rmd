@@ -1,0 +1,16 @@
+---
+title: "Form three students"
+links:
+  - label: GitHub
+    url: 'https://github.com/ichi-dataprojects  target ="_blank"'
+  - label: Email
+    url: 'mailto:ichidataanalysis@email.com  target ="_blank"'
+output:
+  postcards::jolla_blue
+site: distill::distill_website  
+---
+#### This website explores the 2021 Tanzanian Form Three education dataset, focusing on analyzing resource allocation and educational trends within Tanzania's Form Three education system. By delving into this dataset, our goal is to provide valuable insights that can guide policy decisions and contribute to a more equitable and effective education system for Form Three students in Tanzania.
+
+
+ENJOY THE VENTURE 
+

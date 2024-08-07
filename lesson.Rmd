@@ -1,0 +1,24 @@
+---
+title: "Lessons learnt"
+description: |
+  This section synthesizes key insights from our analysis and proposes targeted strategies to improve educational outcomes in Tanzania. We present practical recommendations tailored to the country's specific context, aiming to support its future development through enhanced education
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Our analysis of the data shows that while many students across all regions of Tanzania study Arts subjects, there are fewer students taking science subjects. This corresponds with a lack of ***Science Teachers*** and **Science textbooks**.
+
+For a developing country like Tanzania, science is crucial for technological advancement. Therefore, the education system should focus more on science subjects.
+
+To achieve this, we suggest:
+
+1.  Allocating more resources and funding to science education.
+2.  Increasing the number of science teachers and students.
+3.  Offering higher salaries to science teachers to reduce the teaching gap.
+4.  Increasing special science-focused schools.
+5.  Ensuring that fees for these special schools are similar for both government and non-government institutions.
+
+These steps could help increase interest and participation in science subjects, which is important for Tanzania's future development.

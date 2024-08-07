@@ -1,0 +1,118 @@
+---
+title: "Performance"
+description: |
+  This page focuses on answering the question of **Educational Trends** where we compare relationships across different school ownerships to understand the trend if it is positive or negative.
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r}
+library(tidyverse)
+setwd("D:\\setebe\\Data science\\2024\\Tanzania-Education")
+
+# Read the CSV file
+ed <- read.csv("Education.csv")
+attach(ed)
+```
+
+
+
+```{r}
+# Define the columns for Science and Arts subjects
+science_subjects <- c("agriculture_form3Books", "bmath_form3Books", "biology_form3Books",
+                      "chemistry_form3Books", "physics_form3Books")
+arts_subjects <- c("kiswahili_form3Books", "history_form3Books", "geography_form3Books",
+                   "english_form3Books", "commerce_form3Books", "civics_form3Books")
+
+# Calculate the total number of books for Science and Arts subjects
+ed$total_science_books <- rowSums(ed[, science_subjects], na.rm = TRUE)
+ed$total_arts_books <- rowSums(ed[, arts_subjects], na.rm = TRUE)
+
+# Plot the data
+ggplot(ed, aes(x = total_arts_books, y = total_science_books)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Arts Books vs Science Books",
+       subtitle = "There is positive relationship",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Total Number of Arts Books",
+       y = "Total Number of Science Books") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_text(face = "bold"),
+        axis.title.y = element_text(face = "bold"))
+
+
+
+```
+
+
+
+```{r}
+############################## 
+
+# Define the columns for Science and Arts subjects
+science_subjects <- c("agriculture_form3Books", "bmath_form3Books", "biology_form3Books",
+                      "chemistry_form3Books", "physics_form3Books")
+arts_subjects <- c("kiswahili_form3Books", "history_form3Books", "geography_form3Books",
+                   "english_form3Books", "commerce_form3Books", "civics_form3Books")
+
+# Calculate the total number of books for Science and Arts subjects
+ed$total_science_books <- rowSums(ed[, science_subjects], na.rm = TRUE)
+ed$total_arts_books <- rowSums(ed[, arts_subjects], na.rm = TRUE)
+
+# Plot the data with comparison by ownership
+ggplot(ed, aes(x = total_arts_books, y = total_science_books)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  facet_wrap(~ ownership) +  # Add facet for ownership comparison
+  labs(title = "Arts Books vs Science Books by School Ownership",
+       subtitle = "There is positive relationship although Arts subjects are many",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Total Number of Arts Books",
+       y = "Total Number of Science Books") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_text(face = "bold"),
+        axis.title.y = element_text(face = "bold"))
+
+```
+
+
+```{r}
+
+################## 
+# Define the columns for Science and Arts subjects
+science_students <- c("Agriculture_form3Students", "basicMath_form3Students", 
+                      "biology_form3Students", "chemistry_form3Students", 
+                      "physics_form3Students")
+arts_students <- c("kiswahili_form3Students", "history_form3Students", 
+                   "geography_form3Students", "english_form3Students", 
+                   "commerce_form3Students", "civics_form3Students")
+
+# Calculate the total number of students for Science and Arts subjects
+ed$total_science_students <- rowSums(ed[, science_students], na.rm = TRUE)
+ed$total_arts_students <- rowSums(ed[, arts_students], na.rm = TRUE)
+
+# Plot the data with comparison by ownership using students
+ggplot(ed, aes(x = total_arts_students, y = total_science_students)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  facet_wrap(~ ownership) +  # Add facet for ownership comparison
+  labs(title = "Arts Students vs Science Students by School Ownership",
+       subtitle = "There is positive relationship although science students are few",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Total Number of Arts Students",
+       y = "Total Number of Science Students") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5),
+        axis.title.x = element_text(face = "bold"),
+        axis.title.y = element_text(face = "bold"))
+
+
+```
+

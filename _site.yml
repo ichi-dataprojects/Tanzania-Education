@@ -1,0 +1,21 @@
+name: "."
+title: "Tanzanian Ordinary level Secondary Education"
+description: |
+  Form three students 
+output_dir: "docs"
+theme: chris-theme.css
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Syllabus"
+      href: Syllabus.html
+    - text: "Funding"
+      href: Funding.html
+    - text: "shortages"
+      href: shortages.html
+    - text: "Performance"
+      href: Performance.html
+    - text: "lesson"
+      href: lesson.html
+output: distill::distill_article

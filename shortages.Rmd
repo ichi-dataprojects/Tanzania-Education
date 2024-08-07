@@ -1,0 +1,336 @@
+---
+title: "Shortages or Teacher Qualification Gaps"
+description: |
+ This page focuses on answering the question of **Resource allocation** where we examine the availability of qualified teachers in specific subjects, pinpointing areas where there may be shortages or gaps in qualifications.
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(tidyverse)
+setwd("D:\\setebe\\Data science\\2024\\Tanzania-Education")
+
+# Read the CSV file
+ed <- read.csv("Education.csv")
+attach(ed)
+```
+
+
+
+```{r plot-graph-1-5, fig.width=10, fig.height=8}
+# Define columns for science and arts students
+science_students <- c("Agriculture_form3Students", "basicMath_form3Students", 
+                      "biology_form3Students", "chemistry_form3Students", 
+                      "physics_form3Students")
+arts_students <- c("kiswahili_form3Students", "history_form3Students", 
+                   "geography_form3Students", "english_form3Students", 
+                   "commerce_form3Students", "civics_form3Students")
+
+# Define population ranks for regions
+population_ranks <- c("Dar es Salaam", "Mwanza", "Tabora", "Morogoro", "Dodoma",
+                      "Kagera", "Geita", "Tanga", "Kigoma", "Mara",
+                      "Arusha", "Mbeya", "Shinyanga", "Simiyu", "Pwani",
+                      "Singida", "Manyara", "Kilimanjaro", "Ruvuma", "Mtwara",
+                      "Rukwa", "Songwe", "Lindi", "Iringa", "Katavi", "Njombe")
+
+# Convert 'region' to factor with levels in the order of population ranks
+ed$region <- factor(ed$region, levels = population_ranks, ordered = TRUE)
+
+# Filter data to include only the regions ranked 1 to 5 by population rank
+top1_to_5_regions <- population_ranks[1:5]
+ed_top1_to_5 <- ed %>% filter(region %in% top1_to_5_regions)
+
+# Sum the science and arts students columns per region and ownership
+data_summary <- ed_top1_to_5 %>%
+  group_by(region, ownership) %>%
+  summarise(ScienceStudents = sum(across(all_of(science_students)), na.rm = TRUE),
+            ArtsStudents = sum(across(all_of(arts_students)), na.rm = TRUE))
+
+# Prepare data for plotting
+data_melted <- data_summary %>%
+  pivot_longer(cols = c("ScienceStudents", "ArtsStudents"), names_to = "SubjectType", values_to = "StudentCount")
+
+# Plotting
+ggplot(data_melted, aes(x = region, y = StudentCount, fill = SubjectType)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ownership) +
+  labs(title = "Comparison of Science and Arts Students by Regions Ranked 1-5",
+       subtitle = "Distribution of Science and Arts Students across Different School Ownerships",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Region",
+       y = "Number of Students",
+       fill = "Subject Type") +
+  theme_minimal() +
+  theme(plot.title = element_text(color = "black", size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(color = "black", size = 14, face = "italic"),
+        plot.caption = element_text(size = 12, color = "black", face = "italic", hjust = 0),
+        axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14, face = "bold"),
+        strip.text = element_text(size = 14, face = "bold"),
+        legend.position = "bottom",
+        aspect.ratio = 230/250) +
+  scale_fill_manual(values = c("ScienceStudents" = "#656F6F", "ArtsStudents" = "#9E61A4"))
+
+```
+
+
+
+```{r plot-graph-6-10, fig.width=10, fig.height=8}
+
+# Define columns for science and arts students
+science_students <- c("Agriculture_form3Students", "basicMath_form3Students", 
+                      "biology_form3Students", "chemistry_form3Students", 
+                      "physics_form3Students")
+arts_students <- c("kiswahili_form3Students", "history_form3Students", 
+                   "geography_form3Students", "english_form3Students", 
+                   "commerce_form3Students", "civics_form3Students")
+
+# Define population ranks for regions
+population_ranks <- c("Dar es Salaam", "Mwanza", "Tabora", "Morogoro", "Dodoma",
+                      "Kagera", "Geita", "Tanga", "Kigoma", "Mara",
+                      "Arusha", "Mbeya", "Shinyanga", "Simiyu", "Pwani",
+                      "Singida", "Manyara", "Kilimanjaro", "Ruvuma", "Mtwara",
+                      "Rukwa", "Songwe", "Lindi", "Iringa", "Katavi", "Njombe")
+
+# Convert 'region' to factor with levels in the order of population ranks
+ed$region <- factor(ed$region, levels = population_ranks, ordered = TRUE)
+
+
+# Filter data to include only the regions ranked 6 to 10 by population rank
+top6_to_10_regions <- population_ranks[6:10]
+ed_top6_to_10 <- ed %>% filter(region %in% top6_to_10_regions)
+
+# Sum the science and arts students columns per region and ownership for regions 6-10
+data_summary_6_10 <- ed_top6_to_10 %>%
+  group_by(region, ownership) %>%
+  summarise(ScienceStudents = sum(across(all_of(science_students)), na.rm = TRUE),
+            ArtsStudents = sum(across(all_of(arts_students)), na.rm = TRUE))
+
+# Prepare data for plotting regions 6-10
+data_melted_6_10 <- data_summary_6_10 %>%
+  pivot_longer(cols = c("ScienceStudents", "ArtsStudents"), names_to = "SubjectType", values_to = "StudentCount")
+
+# Plotting for regions 6-10
+ggplot(data_melted_6_10, aes(x = region, y = StudentCount, fill = SubjectType)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ownership) +
+  labs(title = "Comparison of Science and Arts Students by Regions Ranked 6-10",
+       subtitle = "Distribution of Science and Arts Students across Different School Ownerships",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Region",
+       y = "Number of Students",
+       fill = "Subject Type") +
+  theme_minimal() +
+  theme(plot.title = element_text(color = "black", size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(color = "black", size = 14, face = "italic"),
+        plot.caption = element_text(size = 12, color = "black", face = "italic", hjust = 0),
+        axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14, face = "bold"),
+        strip.text = element_text(size = 14, face = "bold"),
+        legend.position = "bottom",
+        aspect.ratio = 230/250) +
+  scale_fill_manual(values = c("ScienceStudents" = "#656F6F", "ArtsStudents" = "#9E61A4"))
+```
+
+
+```{r plot-graph-11-15, fig.width=10, fig.height=8}
+
+# Define columns for science and arts students
+science_students <- c("Agriculture_form3Students", "basicMath_form3Students", 
+                      "biology_form3Students", "chemistry_form3Students", 
+                      "physics_form3Students")
+arts_students <- c("kiswahili_form3Students", "history_form3Students", 
+                   "geography_form3Students", "english_form3Students", 
+                   "commerce_form3Students", "civics_form3Students")
+
+# Define population ranks for regions
+population_ranks <- c("Dar es Salaam", "Mwanza", "Tabora", "Morogoro", "Dodoma",
+                      "Kagera", "Geita", "Tanga", "Kigoma", "Mara",
+                      "Arusha", "Mbeya", "Shinyanga", "Simiyu", "Pwani",
+                      "Singida", "Manyara", "Kilimanjaro", "Ruvuma", "Mtwara",
+                      "Rukwa", "Songwe", "Lindi", "Iringa", "Katavi", "Njombe")
+
+# Convert 'region' to factor with levels in the order of population ranks
+ed$region <- factor(ed$region, levels = population_ranks, ordered = TRUE)
+
+
+
+# Filter data to include only the regions ranked 11 to 15 by population rank
+top11_to_15_regions <- population_ranks[11:15]
+ed_top11_to_15 <- ed %>% filter(region %in% top11_to_15_regions)
+
+# Sum the science and arts students columns per region and ownership for regions 11-15
+data_summary_11_15 <- ed_top11_to_15 %>%
+  group_by(region, ownership) %>%
+  summarise(ScienceStudents = sum(across(all_of(science_students)), na.rm = TRUE),
+            ArtsStudents = sum(across(all_of(arts_students)), na.rm = TRUE))
+
+# Prepare data for plotting regions 11-15
+data_melted_11_15 <- data_summary_11_15 %>%
+  pivot_longer(cols = c("ScienceStudents", "ArtsStudents"), names_to = "SubjectType", values_to = "StudentCount")
+
+# Plotting for regions 11-15
+ggplot(data_melted_11_15, aes(x = region, y = StudentCount, fill = SubjectType)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ownership) +
+  labs(title = "Comparison of Science and Arts Students by Regions Ranked 11-15",
+       subtitle = "Distribution of Science and Arts Students across Different School Ownerships",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Region",
+       y = "Number of Students",
+       fill = "Subject Type") +
+  theme_minimal() +
+  theme(plot.title = element_text(color = "black", size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(color = "black", size = 14, face = "italic"),
+        plot.caption = element_text(size = 12, color = "black", face = "italic", hjust = 0),
+        axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14, face = "bold"),
+        strip.text = element_text(size = 14, face = "bold"),
+        legend.position = "bottom",
+        aspect.ratio = 230/250) +
+  scale_fill_manual(values = c("ScienceStudents" = "#656F6F", "ArtsStudents" = "#9E61A4"))
+```
+
+
+
+```{r plot-graph-16-20, fig.width=10, fig.height=8}
+
+# Define columns for science and arts students
+science_students <- c("Agriculture_form3Students", "basicMath_form3Students", 
+                      "biology_form3Students", "chemistry_form3Students", 
+                      "physics_form3Students")
+arts_students <- c("kiswahili_form3Students", "history_form3Students", 
+                   "geography_form3Students", "english_form3Students", 
+                   "commerce_form3Students", "civics_form3Students")
+
+# Define population ranks for regions
+population_ranks <- c("Dar es Salaam", "Mwanza", "Tabora", "Morogoro", "Dodoma",
+                      "Kagera", "Geita", "Tanga", "Kigoma", "Mara",
+                      "Arusha", "Mbeya", "Shinyanga", "Simiyu", "Pwani",
+                      "Singida", "Manyara", "Kilimanjaro", "Ruvuma", "Mtwara",
+                      "Rukwa", "Songwe", "Lindi", "Iringa", "Katavi", "Njombe")
+
+# Convert 'region' to factor with levels in the order of population ranks
+ed$region <- factor(ed$region, levels = population_ranks, ordered = TRUE)
+
+
+
+# Filter data to include only the regions ranked 16 to 20 by population rank
+top16_to_20_regions <- population_ranks[16:20]
+ed_top16_to_20 <- ed %>% filter(region %in% top16_to_20_regions)
+
+# Sum the science and arts students columns per region and ownership for regions 16-20
+data_summary_16_20 <- ed_top16_to_20 %>%
+  group_by(region, ownership) %>%
+  summarise(ScienceStudents = sum(across(all_of(science_students)), na.rm = TRUE),
+            ArtsStudents = sum(across(all_of(arts_students)), na.rm = TRUE))
+
+# Prepare data for plotting regions 16-20
+data_melted_16_20 <- data_summary_16_20 %>%
+  pivot_longer(cols = c("ScienceStudents", "ArtsStudents"), names_to = "SubjectType", values_to = "StudentCount")
+
+# Plotting for regions 16-20
+ggplot(data_melted_16_20, aes(x = region, y = StudentCount, fill = SubjectType)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ownership) +
+  labs(title = "Comparison of Science and Arts Students by Regions Ranked 16-20",
+       subtitle = "Distribution of Science and Arts Students across Different School Ownerships",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Region",
+       y = "Number of Students",
+       fill = "Subject Type") +
+  theme_minimal() +
+  theme(plot.title = element_text(color = "black", size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(color = "black", size = 14, face = "italic"),
+        plot.caption = element_text(size = 12, color = "black", face = "italic", hjust = 0),
+        axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14, face = "bold"),
+        strip.text = element_text(size = 14, face = "bold"),
+        legend.position = "bottom",
+        aspect.ratio = 230/250) +
+  scale_fill_manual(values = c("ScienceStudents" = "#656F6F", "ArtsStudents" = "#9E61A4"))
+```
+
+
+
+```{r plot-graph-21-26, fig.width=10, fig.height=8}
+
+# Define columns for science and arts students
+science_students <- c("Agriculture_form3Students", "basicMath_form3Students", 
+                      "biology_form3Students", "chemistry_form3Students", 
+                      "physics_form3Students")
+arts_students <- c("kiswahili_form3Students", "history_form3Students", 
+                   "geography_form3Students", "english_form3Students", 
+                   "commerce_form3Students", "civics_form3Students")
+
+# Define population ranks for regions
+population_ranks <- c("Dar es Salaam", "Mwanza", "Tabora", "Morogoro", "Dodoma",
+                      "Kagera", "Geita", "Tanga", "Kigoma", "Mara",
+                      "Arusha", "Mbeya", "Shinyanga", "Simiyu", "Pwani",
+                      "Singida", "Manyara", "Kilimanjaro", "Ruvuma", "Mtwara",
+                      "Rukwa", "Songwe", "Lindi", "Iringa", "Katavi", "Njombe")
+
+# Convert 'region' to factor with levels in the order of population ranks
+ed$region <- factor(ed$region, levels = population_ranks, ordered = TRUE)
+
+
+
+# Filter data to include only the regions ranked 21 to 26 by population rank
+top21_to_26_regions <- population_ranks[21:26]
+ed_top21_to_26 <- ed %>% filter(region %in% top21_to_26_regions)
+
+# Sum the science and arts students columns per region and ownership for regions 21-26
+data_summary_21_26 <- ed_top21_to_26 %>%
+  group_by(region, ownership) %>%
+  summarise(ScienceStudents = sum(across(all_of(science_students)), na.rm = TRUE),
+            ArtsStudents = sum(across(all_of(arts_students)), na.rm = TRUE))
+
+# Prepare data for plotting regions 21-26
+data_melted_21_26 <- data_summary_21_26 %>%
+  pivot_longer(cols = c("ScienceStudents", "ArtsStudents"), names_to = "SubjectType", values_to = "StudentCount")
+
+# Plotting for regions 21-26
+ggplot(data_melted_21_26, aes(x = region, y = StudentCount, fill = SubjectType)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ ownership) +
+  labs(title = "Comparison of Science and Arts Students by Regions Ranked 21-26",
+       subtitle = "Distribution of Science and Arts Students across Different School Ownerships",
+       caption = "Form three Ordinary Secondary Education data of 2021",
+       x = "Region",
+       y = "Number of Students",
+       fill = "Subject Type") +
+  theme_minimal() +
+  theme(plot.title = element_text(color = "black", size = 16, face = "bold", hjust = 0.5),
+        plot.subtitle = element_text(color = "black", size = 14, face = "italic"),
+        plot.caption = element_text(size = 12, color = "black", face = "italic", hjust = 0),
+        axis.title.x = element_text(color = "black", size = 14, face = "bold"),
+        axis.title.y = element_text(color = "black", size = 14, face = "bold"),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 14, face = "bold"),
+        strip.text = element_text(size = 14, face = "bold"),
+        legend.position = "bottom",
+        aspect.ratio = 230/250) +
+  scale_fill_manual(values = c("ScienceStudents" = "#656F6F", "ArtsStudents" = "#9E61A4"))
+```
+

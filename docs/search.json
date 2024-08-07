@@ -1,0 +1,52 @@
+{
+  "articles": [
+    {
+      "path": "Funding.html",
+      "title": "Funding Disparities",
+      "description": "This page focuses on answering the question of **Resource allocation** where we investigate potential disparities in funding for syllabus books across various regions, identifying any imbalances in resource allocation.\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-08-07T13:37:03+03:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Form three students",
+      "author": [],
+      "contents": "\r\n\r\n          \r\n          \r\n          Tanzanian Ordinary level Secondary Education\r\n          \r\n          \r\n          Home\r\n          Syllabus\r\n          Funding\r\n          shortages\r\n          Performance\r\n          lesson\r\n          ☰\r\n          \r\n          \r\n      \r\n        \r\n          \r\n            Form three students\r\n          \r\n          \r\n            \r\n              \r\n              This website explores the 2021 Tanzanian Form Three\r\n              education dataset, focusing on analyzing resource\r\n              allocation and educational trends within Tanzania’s Form\r\n              Three education system. By delving into this dataset, our\r\n              goal is to provide valuable insights that can guide policy\r\n              decisions and contribute to a more equitable and effective\r\n              education system for Form Three students in Tanzania.\r\n              ENJOY THE VENTURE\r\n              \r\n            \r\n            \r\n              \r\n              This website explores the 2021 Tanzanian Form Three\r\n              education dataset, focusing on analyzing resource\r\n              allocation and educational trends within Tanzania’s Form\r\n              Three education system. By delving into this dataset, our\r\n              goal is to provide valuable insights that can guide policy\r\n              decisions and contribute to a more equitable and effective\r\n              education system for Form Three students in Tanzania.\r\n              ENJOY THE VENTURE\r\n              \r\n            \r\n          \r\n\r\n          \r\n            \r\n              \r\n                  \r\n                    \r\n                      GitHub\r\n                    \r\n                  \r\n                \r\n                                \r\n                  \r\n                    \r\n                      Email\r\n                    \r\n                  \r\n                \r\n                              \r\n          \r\n\r\n          \r\n            \r\n              \r\n                                \r\n                  \r\n                    GitHub\r\n                  \r\n                \r\n                                \r\n                  \r\n                    Email\r\n                  \r\n                \r\n                              \r\n            \r\n          \r\n        \r\n      \r\n    \r\n\r\n    \r\n    \r\n    ",
+      "last_modified": "2024-08-07T13:37:14+03:00"
+    },
+    {
+      "path": "lesson.html",
+      "title": "Lessons learnt",
+      "description": "This section synthesizes key insights from our analysis and proposes targeted strategies to improve educational outcomes in Tanzania. We present practical recommendations tailored to the country's specific context, aiming to support its future development through enhanced education\n",
+      "author": [],
+      "contents": "\r\nOur analysis of the data shows that while many students across all regions of Tanzania study Arts subjects, there are fewer students taking science subjects. This corresponds with a lack of Science Teachers and Science textbooks.\r\nFor a developing country like Tanzania, science is crucial for technological advancement. Therefore, the education system should focus more on science subjects.\r\nTo achieve this, we suggest:\r\nAllocating more resources and funding to science education.\r\nIncreasing the number of science teachers and students.\r\nOffering higher salaries to science teachers to reduce the teaching gap.\r\nIncreasing special science-focused schools.\r\nEnsuring that fees for these special schools are similar for both government and non-government institutions.\r\nThese steps could help increase interest and participation in science subjects, which is important for Tanzania’s future development.\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-08-07T13:37:18+03:00"
+    },
+    {
+      "path": "Performance.html",
+      "title": "Performance",
+      "description": "This page focuses on answering the question of **Educational Trends** where we compare relationships across different school ownerships to understand the trend if it is positive or negative.\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-08-07T13:37:31+03:00"
+    },
+    {
+      "path": "shortages.html",
+      "title": "Shortages or Teacher Qualification Gaps",
+      "description": "This page focuses on answering the question of **Resource allocation** where we examine the availability of qualified teachers in specific subjects, pinpointing areas where there may be shortages or gaps in qualifications.\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-08-07T13:37:43+03:00"
+    },
+    {
+      "path": "Syllabus.html",
+      "title": "Syllabus Books Provision",
+      "description": "This page focuses on answering the question of **Resource allocation** where we assess the distribution of syllabus books between Government and Non Government schools, analyzing how these resources are allocated across different regions of Tanzania arranged in population ranks\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2024-08-07T13:37:57+03:00"
+    }
+  ],
+  "collections": []
+}
